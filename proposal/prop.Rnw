@@ -5,13 +5,11 @@
 \textheight=9.5in
 \usepackage{ulem}
 \usepackage{hyperref}
+\usepackage{cite}
+\usepackage{url}
 \begin{document}
-\SweaveOpts{concordance=TRUE}
+% \SweaveOpts{concordance=TRUE}
 
-<<echo=FALSE>>=
-library(knitr)
-knitr::opts_chunk$set(warning = FALSE)
-@
 \Large
 \begin{center}
    {\bf STAT 6550 Fall 2021}\\ Final Project Proposal\\
@@ -30,7 +28,7 @@ knitr::opts_chunk$set(warning = FALSE)
 \begin{enumerate}
 \item {\bf Dataset}
 
-Our dataset was produced by an AI using DPIV (\href{https://www.researchgate.net/figure/Directional-DPIV-based-bee-motion-estimation-algorithm_fig1_340021624}{cite}) to count the level of bee activity outside a hive marked $R\_4\_5$. These csv files are part of the output of Dr. Sarbajit Mukherjee during his dissertation at Utah State University. We have received permission of Dr. Kulyukin to use these files for time series analysis. The counts correspond to a $28$ second period recorded approximately every $15$ minutes throughout the day. The monitors shutdown at night and went off line several times throughout the season leaving significant coverage gaps.
+Our dataset was produced by an AI using digital particle image velocimetry or DPIV \href{https://www.researchgate.net/figure/Directional-DPIV-based-bee-motion-estimation-algorithm_fig1_340021624}{\cite{Willert1991}} to count the level of bee activity outside a hive marked $R\_4\_5$. These csv files are part of the output of Dr. Sarbajit Mukherjee during his dissertation at Utah State University. We have received permission of Dr. Kulyukin to use these files for time series analysis. The counts correspond to a $28$ second period recorded approximately every $15$ minutes throughout the day. The monitors shutdown at night and went off line several times throughout the season leaving significant coverage gaps.
 
 \item {\bf Proposed Analysis}
 
@@ -42,11 +40,15 @@ There is no single source R package that combines multiple time series technique
 
 \item {\bf What challenges do you foresee in completing this analysis? How do you intend to address these challenges? }
 
-The ideal would be approach the predictive accuracy of facebook's prophet \href{https://facebook.github.io/prophet/}{[cite]}, which, like other modern AR techniques, makes little mention or use of the other methods in the field. While it is unlikely we can reach that ideal, progress can be made by proceeding from the simplest models into more complex and recent additions to the field and incorporating the knowledge and experience gained into later experiments.
+The ideal would be approach the predictive accuracy of Facebook's Prophet \href{https://facebook.github.io/prophet/}{\cite{taylor2017scale}}, which, like other modern AR techniques, makes little mention or use of the other methods in the field. While it is unlikely we can reach that ideal, progress can be made by proceeding from the simplest models into more complex and recent additions to the field and incorporating the knowledge and experience gained into later experiments.
 
 \item {\bf In what way would your analysis be of interest to the other students in the class? }
 
 We feel there is a barrier among our peers to attempting time series analysis with real world data. That barrier is cause by missing data points, uneven time segments, and interpretability of the output. We hope, by following our vignette that the students will be able to remove some of that difficulty.
 
 \end{enumerate}
+\bibliographystyle{apalike}
+\bibliography{references.bib}
+
+
 \end{document}
