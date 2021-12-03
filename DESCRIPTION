@@ -1,0 +1,21 @@
+Package: bee.count
+Type: Package
+Title: This Package Prepares Data and Provides Analysis Tools for Non-Linear
+  Time Series
+Version: 0.1.0
+Author: Jake S. Rhodes and Matthew Lister
+Maintainer: Jake S. Rhodes <jake.rhodes@usu.edu>
+Description: Our dataset was produced by an AI using digital particle image
+    velocimetry or DPIV [Willert and Gharib, 1991] to count the level of bee
+    activity outside a hive marked R 4 5. These csv files are part of the 
+    output of Dr. Sarbajit Mukherjee during his dissertation at Utah State
+    University. We have received permission of Dr. Kulyukin to use these files
+    for time series analysis. The counts correspond to a 28 second period 
+    recorded approximately every 15 minutes throughout the day. The monitors 
+    shutdown at night and went off line several times throughout the season 
+    leaving significant coverage gaps. In this package, we provide a script
+    for cleaning and preparing the data for time-series analysis as well as
+    some tools for providing analysis for the non-uniform series.
+License: GPL-3 + file LICENSE
+Encoding: UTF-8
+LazyData: true
