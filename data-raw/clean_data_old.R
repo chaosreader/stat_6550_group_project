@@ -16,6 +16,7 @@ combined.bee <- rbind(combined.bee, oct.bee)
 
 # Create different time measurements; prep for table merge
 combined.bee[, DATE := floor_date(anytime(gsub('.*2020', '2020', VIDEO)), "15 minutes")]
+# combined.bee[, DATE := anytime(gsub('.*2020', '2020', VIDEO))]
 combined.bee[, MONTH := lubridate::month(DATE)]
 combined.bee[, DAY := day(DATE)]
 combined.bee[, HOUR := hour(DATE)]
@@ -31,7 +32,6 @@ combined.bee <- combined.bee[, .(DATE, MONTH, DAY, HOUR, MINUTE, TOTAL_COUNT,
 # Import and and date info for weather data
 weather  <- data.table::fread('data-raw/hourly_weather.csv')
 weather$date_time <- anytime(gsub(' UTC', ' MDT', weather$date_time))
-
 weather[, DATE := round_date(date_time, '15 minutes')]
 weather[, HOUR := hour(DATE)]
 weather[, MONTH := month(DATE)]
@@ -44,7 +44,7 @@ first_date <- combined.bee[1]$DATE
 last_date  <- combined.bee[nrow(combined.bee)]$DATE
 
 all_times <- data.table('DATE' = seq(from = first_date, to = last_date,
-                                     by = '15 mins'))
+                                   by = '15 mins'))
 
 all_times[, MONTH := month(DATE)]
 all_times[, DAY := day(DATE)]
@@ -56,43 +56,22 @@ setkey(combined.bee, MONTH, DAY, HOUR, MINUTE)
 setkey(weather, MONTH, DAY, HOUR)
 setkey(all_times, MONTH, DAY, HOUR, MINUTE)
 
-# setkey(combined.bee, DATE)
-# setkey(weather, DATE)
-# setkey(all_times, DATE)
+bee.data <- combined.bee[weather[, .(TEMP = airt_avg, WIND = winds_avg,
+                                     WET = wet_pct, PRECIP = precip,
+                                     HOUR, DAY, MONTH)], nomatch = 0]
 
-all_times <- merge(all_times, weather[, .(TEMP = airt_avg, WIND = winds_avg,
-                                                 WET = wet_pct, PRECIP = precip,
-                                                 HOUR, DAY, MONTH, DATE)],
-                   all = TRUE)
 
-all_times[, DATE := ifelse(!is.na(DATE.x), DATE.x, DATE.y)]
-all_times$DATE <- anytime(all_times$DATE)
+bee.data <- bee.data[all_times, ]
+bee.data[, DATE := round_date(i.DATE, '15 minutes')]
+bee.data[, i.DATE := NULL]
 
-all_times[, MONTH := month(DATE)]
-all_times[, DAY := day(DATE)]
-all_times[, MINUTE := minute(DATE)]
-all_times[, HOUR := hour(DATE)]
-all_times[, DATE.x := NULL]
-all_times[, DATE.y := NULL]
 
-bee.data <- merge(combined.bee, all_times, all = TRUE)
-
-bee.data[, DATE := ifelse(!is.na(DATE.y), DATE.y, DATE.x)]
-bee.data$DATE <- anytime(bee.data$DATE)
-bee.data[, DATE.x := NULL]
-bee.data[, DATE.y := NULL]
-
-bee.data <- bee.data[, .(DATE, MONTH, DAY, HOUR, MINUTE, TOTAL_COUNT,
-                         UPWARD, DOWNWARD, LATERAL, WINDOW, OVERLAP,
-                         TEMP, WIND, WET,
-                         PRECIP)]
-
+bee.data <- bee.data[-c(6046, 6048)]
 bee.data[, IMP := ifelse(!is.na(TOTAL_COUNT), TOTAL_COUNT,
                          median(TOTAL_COUNT, na.rm = TRUE)),
          by = c('MONTH', 'DAY')]
 
-bee.data <- bee.data[-c(1:8)]
-bee.data <- bee.data[-c(6046, 6048)]
+
 
 usethis::use_data(bee.data, overwrite = TRUE)
 

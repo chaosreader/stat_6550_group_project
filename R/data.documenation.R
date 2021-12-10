@@ -1,0 +1,26 @@
+#' Bee count data collected ... The weather data was collected from the USU
+#'   Environmental Observatory (USUwx).
+#'
+#' A dataset containing the counts of bees alongside weather.
+#'
+#' @format A datatable with 9896 rows and 16 variables:
+#' \describe{
+#'   \item{DATE}{The date and time using the MDT timezone.}
+#'   \item{MONTH}{Numeric month.}
+#'   \item{DAY}{Day of the month.}
+#'   \item{HOUR}{Hour of the day. 0 corresponds to midnight.}
+#'   \item{MINUTE}{Minutes within the hour.}
+#'   \item{TOTAL_COUNT}{How many bees are present.}
+#'   \item{UPWARD}{How many bees are facing upward at the time of the count.}
+#'   \item{DOWNWARD}{How many bees are downward at the time of the count.}
+#'   \item{LATERAL}{How many bees are lateral at the time of the count.}
+#'   \item{WINDOW}{Window (in minutes) of time during the count.}
+#'   \item{OVELAP}{Any overlap (in minutes) of consecutive windows.}
+#'   \item{TEMP}{Air temperature in degrees F.}
+#'   \item{WIND}{Average windspeed in the hour (m/s).}
+#'   \item{WET}{Percentage of surface wetness (due to precipitation)}
+#'   \item{PRECIP}{Total precipitation (in the hour) in mm.}
+#'   \item{IMP}{Imputed TOTAL_COUNT by month and day median}
+#' }
+#' @source \url{https://climate.usu.edu/mchd/}
+"bee.data"
