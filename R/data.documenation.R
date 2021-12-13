@@ -1,9 +1,18 @@
-#' Bee count data collected ... The weather data was collected from the USU
-#'   Environmental Observatory (USUwx).
+#' Bee Count Data
+#' @description The bee dataset was produced by an AI using digital particle image
+#'  velocimetry or DPIV to count the level of bee activity outside a hive
+#'  marked R_4_5. These csv files are part of the output of Dr. Sarbajit
+#'  Mukherjee during his dissertation at Utah State University. We have received
+#'  permission of Dr. Kulyukin to use these files for time series analysis.
+#'  The counts correspond to a 28 second period recorded approximately every
+#'  15 minutes throughout the day. The monitors shutdown at night and went off
+#'  line several times throughout the season leaving significant coverage gaps.
+#'  Weather was also collected from Utah State University's Environmental
+#'  Observatory to correspond with the same days and times as the bee data.
 #'
 #' A dataset containing the counts of bees alongside weather.
 #'
-#' @format A datatable with 9896 rows and 16 variables:
+#' @format A data.table with 9896 rows and 15 variables:
 #' \describe{
 #'   \item{DATE}{The date and time using the MDT timezone.}
 #'   \item{MONTH}{Numeric month.}
@@ -20,7 +29,6 @@
 #'   \item{WIND}{Average windspeed in the hour (m/s).}
 #'   \item{WET}{Percentage of surface wetness (due to precipitation)}
 #'   \item{PRECIP}{Total precipitation (in the hour) in mm.}
-#'   \item{IMP}{Imputed TOTAL_COUNT by month and day median}
 #' }
 #' @source \url{https://climate.usu.edu/mchd/}
 "bee.data"

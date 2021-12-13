@@ -1,22 +1,10 @@
-#---------------------------Try Below for 15 minute intervals
-
 library(xts)
-library(xtsExtra)
 library(lubridate)
-
-df <- data.frame(interval = seq(ymd_hms('2014-01-21 00:00:00'),
-                                by = '15 min',length.out=(60*24*365/15)),
-                 data = rnorm(60*24*365/15))
-
-
-ts <- xts(bee.data$IMP, order.by = bee.data$DATE)
-
-################################################################################
 
 n <- nrow(bee.data)
 
-# avg_temp <- xts(bee.data$TEMP, order.by = bee.data$DATE)
-avg_temp <- ts(bee.data$TEMP)
+avg_temp <- xts(bee.data$TEMP, order.by = bee.data$DATE)
+# avg_temp <- ts(bee.data$TEMP)
 
 plot(avg_temp,
      main = 'Average Monthly Temperature (F)',
@@ -49,6 +37,7 @@ plot(count_96,
 
 # To determine the MA model
 acf(count_96)
+pacf(count_96)
 
 # Fill MA(25) model
 ma25 <- arima(count_96 - mean(count_96),
