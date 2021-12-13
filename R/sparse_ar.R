@@ -20,7 +20,7 @@ sparse_ar <- function(x, p_max = 30, pct_ci = .95, margin = 0) {
   criticals <- criticals[1:p_max]
 
 
-  init_acf  <- stats::acf(x, lag.max = p_max, plot = FALSE)$acf[2:(p_max + 1)]
+  init_acf  <- stats::pacf(x, lag.max = p_max, plot = FALSE)$acf[1:p_max]
   coef_locs <- which(init_acf > criticals * ( 1 + margin))
 
   fixed <- rep(0, p_max)
