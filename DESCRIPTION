@@ -25,3 +25,7 @@ RoxygenNote: 7.1.2
 Imports: 
     magrittr,
     data.table
+Suggests: 
+    rmarkdown,
+    knitr
+VignetteBuilder: knitr
