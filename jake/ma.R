@@ -36,6 +36,8 @@ plot(count_96,
      xlim = c(0, 1000))
 
 # To determine the MA model
+arima <- auto.arima(count_96)
+autocor <- acf(count_96)
 acf(count_96)
 pacf(count_96)
 

@@ -2,5 +2,7 @@
 
 export("%>%")
 export(base_impute)
+export(sparse_ar)
+export(sparse_ma)
 import(data.table)
 importFrom(magrittr,"%>%")
