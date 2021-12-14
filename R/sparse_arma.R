@@ -28,16 +28,12 @@ sparse_arma <- function(x, p_max = 10, q_max = 10, pct_ci = .95, margin = 0) {
 
   coef_locs <- which(init_combined > c(crit_p, crit_q) * ( 1 + margin))
 
-  print(coef_locs)
-
   fixed <- rep(0, p_max + q_max)
   fixed[coef_locs] <- NA
 
-  print(fixed)
-
   model <- stats::arima(x - mean(x), order = c(p_max, 0, q_max),
                         include.mean = FALSE, fixed = fixed,
-                        transform.pars = FALSE, method = 'CSS-ML')
+                        transform.pars = FALSE, method = c('CSS-ML'))
 
 
   print(stats::Box.test(model$residuals, lag = 36, type = 'Ljung-Box'))
