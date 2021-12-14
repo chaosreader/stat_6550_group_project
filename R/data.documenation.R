@@ -1,6 +1,6 @@
 #' Bee Count Data
-#' @description The bee dataset was produced by an AI using digital particle image
-#'  velocimetry or DPIV to count the level of bee activity outside a hive
+#' @description The bee dataset was produced by an AI using digital particle
+#'  image velocimetry or DPIV to count the level of bee activity outside a hive
 #'  marked R_4_5. These csv files are part of the output of Dr. Sarbajit
 #'  Mukherjee during his dissertation at Utah State University. We have received
 #'  permission of Dr. Kulyukin to use these files for time series analysis.

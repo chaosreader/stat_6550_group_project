@@ -8,27 +8,30 @@
 #' @import data.table
 #' @export
 #' @examples
-#'   base_impute(bee.data, 'median', 'TOTAL_COUNT', c('MONTH', 'DAY'))
+#' base_impute(bee.data, "median", "TOTAL_COUNT", c("MONTH", "DAY"))
+base_impute <- function(dt, type = "median", impute_col, group_by = "") {
+  IMPUTED_VALS <- "IMPUTED_VALS"
 
-base_impute <- function(dt, type = 'median', impute_col, group_by = '') {
-
-  IMPUTED_VALS <- 'IMPUTED_VALS'
-
-  if (type == 'mean') {
+  if (type == "mean") {
     dt[, IMPUTED_VALS := ifelse(!is.na(get(impute_col)), get(impute_col),
-                                base::mean(get(impute_col), na.rm = TRUE)),
-       by = group_by]
-  } else if (type == 'median') {
+      base::mean(get(impute_col), na.rm = TRUE)
+    ),
+    by = group_by
+    ]
+  } else if (type == "median") {
     dt[, IMPUTED_VALS := ifelse(!is.na(get(impute_col)), get(impute_col),
-                                stats::median(get(impute_col), na.rm = TRUE)),
-       by = group_by]
-  } else if (type == 'zero')  {
+      stats::median(get(impute_col), na.rm = TRUE)
+    ),
+    by = group_by
+    ]
+  } else if (type == "zero") {
     dt[, IMPUTED_VALS := ifelse(!is.na(get(impute_col)), get(impute_col),
-                                0),
-       by = group_by]
-
+      0
+    ),
+    by = group_by
+    ]
   } else {
-    print('Currently only mean, median, and 0 are supported. Returning NA')
+    print("Currently only mean, median, and 0 are supported. Returning NA")
     return(NA)
   }
 
