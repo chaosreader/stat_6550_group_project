@@ -20,7 +20,7 @@ coefficient consideration.}
 Sparse MA Model with Auto-Selected Coefficients
 }
 \examples{
-  data <- base_impute(bee.data[1:100], impute_col = "TOTAL_COUNT")
-  x <- data$IMPUTED_VALS
-  model <- sparse_ma(x)
+data <- base_impute(bee.data[1:100], impute_col = "TOTAL_COUNT")
+x <- data$IMPUTED_VALS
+model <- sparse_ma(x)
 }

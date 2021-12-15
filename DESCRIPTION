@@ -27,5 +27,6 @@ Imports:
     data.table
 Suggests: 
     rmarkdown,
-    knitr
+    knitr,
+    printr
 VignetteBuilder: knitr

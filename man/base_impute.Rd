@@ -20,5 +20,5 @@ and 'zero'.}
 Basic (naive) imputation for missing values in a data.table.
 }
 \examples{
-  base_impute(bee.data, 'median', 'TOTAL_COUNT', c('MONTH', 'DAY'))
+base_impute(bee.data, "median", "TOTAL_COUNT", c("MONTH", "DAY"))
 }

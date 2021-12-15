@@ -5,6 +5,7 @@ vignette: >
   %\VignetteIndexEntry{beecount-vignette}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteDepends{printr}
 ---
 # bee.count
 ```{r, include = FALSE}
@@ -16,7 +17,7 @@ knitr::opts_chunk$set(
 
 ```{r setup, echo=FALSE, message=FALSE}
 library(bee.count)
-library(xts)
+#library(xts)
 library(printr)
 data <- bee.data
 original <- bee.data[!is.na(TOTAL_COUNT)]
@@ -30,6 +31,7 @@ plot(ts(original$TOTAL_COUNT[1:140]), main = NULL,
 ```
 
 # Data Set
+
 Our dataset was produced by an AI using digital particle image velocimetry or 
 DPIV [Willert and Gharib, 1991] to count the level of bee activity outside 
 a hive marked R_4_5. These csv files are part of the output of
@@ -40,6 +42,9 @@ The counts correspond to a 28 second period recorded approximately every
 several times throughout the season leaving significant coverage gaps.
 
 ## bee.data
+
+This library contains an R data file named bee.data. It is a collection of bee motion counts calculated by DPIV and paired with the weather conditions organized by timestamp.
+
 <details>
   <summary>Long Description of bee.data</summary>
 ```{r, echo=FALSE}
@@ -76,13 +81,16 @@ understood techniques of time series analysis.
 # Purpose
 The purpose of the collected data set and associated tools is to provide a 
 frame-work for the data scientist to better understand the processing involved
-in preparing a dataset for time series analysis and interpreting the results.
+in preparing a data set for time series analysis and interpreting the results.
 
 ---
 
 # Functions
 
 ## base_impute
+
+The base_impute function replaces missing values to a value indicated to by the
+programmer. 
 
 <details>
   <summary>Long Description of base_impute</summary>
@@ -93,6 +101,11 @@ help(base_impute)
 
 ## sparse_ar
 
+The sparse_ar function computes an autoregressive integrated moving average
+without the user selecting all the needed parameters of the stats package
+arima function.
+
+
 <details>
   <summary>Long Description of spare_ar</summary>
 ```{r, echo=FALSE}
@@ -102,6 +115,9 @@ help(sparse_ar)
 
 ## sparse_arma
 
+The sparse_arma function computes an autoregressive moving average while
+limiting the variables needed from the user.
+
 <details>
   <summary>Long Description of sparse_arma</summary>
 ```{r, echo=FALSE}
@@ -110,6 +126,9 @@ help(sparse_arma)
 </details>
 
 ## sparse_ma
+
+The sparse_ma function computes an moving average for the user.
+
 
 <details>
   <summary>Long Description of sparse_ma</summary>
