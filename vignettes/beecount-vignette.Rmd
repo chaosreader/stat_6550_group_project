@@ -6,7 +6,7 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-
+# bee.count
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -14,6 +14,40 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+```{r setup, echo=FALSE, message=FALSE}
 library(bee.count)
+library(xts)
+data <- bee.data
+original <- bee.data[!is.na(TOTAL_COUNT)]
 ```
+
+```{r, echo=FALSE,fig.width=7, fig.height=3}
+
+plot(ts(original$TOTAL_COUNT[1:140]), main = NULL,
+     ylab = NULL,
+     xlab = NULL)
+
+```
+
+## Data Set
+Our dataset was produced by an AI using digital particle image velocimetry or 
+DPIV [Willert and Gharib, 1991] to count the level of bee activity outside 
+a hive marked R_4_5. These csv files are part of the output of
+Dr. Sarbajit Mukherjee during his dissertation at Utah State University. We have
+received permission of Dr. Kulyukin to use these files for time series analysis.
+The counts correspond to a 28 second period recorded approximately every 
+15 minutes throughout the day. The monitors shut-down at night and went off line
+several times throughout the season leaving significant coverage gaps.
+
+## Time series
+Time series data sets are most often indexed by time and store a single value for
+each index. A distinctive feature of time series is that the mean and variance
+may often be misleading as there is a significant auto correlation between a 
+point and the preceding or following points. This makes linear models 
+unsatisfactory and instead the data scientist must use the more poorly 
+understood techniques of time series analysis.
+
+
+## Purpose
+The purpose of the collected data set and associated tools is to provide a 
+frame-work for the 
