@@ -5,3 +5,5 @@ matt
 proposal
 ^data-raw$
 figs
+^doc$
+^Meta$
