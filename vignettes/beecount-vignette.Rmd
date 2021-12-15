@@ -21,12 +21,11 @@ data <- bee.data
 original <- bee.data[!is.na(TOTAL_COUNT)]
 ```
 
-```{r, echo=FALSE,fig.width=7, fig.height=3}
-
+```{r, echo=FALSE,fig.width=7, fig.height=1}
+par(mar = c(0,0,0,0))
 plot(ts(original$TOTAL_COUNT[1:140]), main = NULL,
      ylab = NULL,
      xlab = NULL)
-
 ```
 
 ## Data Set
@@ -39,6 +38,17 @@ The counts correspond to a 28 second period recorded approximately every
 15 minutes throughout the day. The monitors shut-down at night and went off line
 several times throughout the season leaving significant coverage gaps.
 
+The R_4_5 monitor worked reasonable well during the 2017 season. However, the 
+data collected from is was heavily right skewed and missing multiple values.
+```{r, fig.align='center', fig.width=7, echo=FALSE}
+par(mfrow = c(1, 2))
+hist(data[!is.na(TOTAL_COUNT), TOTAL_COUNT], breaks = seq(0, 13500, 500),
+     main = 'Distribution of Bee Counts', xlab = 'Bee Count')
+plot(ts(data$TOTAL_COUNT[1:200]), main = "Data Accounting for Missing Times",
+     ylab = 'Count',
+     xlab = 'Time (15 Min. Intervals)')
+```
+
 ## Time series
 Time series data sets are most often indexed by time and store a single value for
 each index. A distinctive feature of time series is that the mean and variance
@@ -50,4 +60,23 @@ understood techniques of time series analysis.
 
 ## Purpose
 The purpose of the collected data set and associated tools is to provide a 
-frame-work for the 
+frame-work for the data scientist to better understand the processing involved
+in preparing a dataset for time series analysis and interpreting the results.
+
+# Functions
+
+
+## base_impute
+
+```{r, echo = F}
+
+```  
+
+
+## sparse_ar
+
+## sparse_arma
+
+## sparse_ma
+
+
