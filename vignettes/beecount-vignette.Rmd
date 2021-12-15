@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 ```{r setup, echo=FALSE, message=FALSE}
 library(bee.count)
 library(xts)
+library(printr)
 data <- bee.data
 original <- bee.data[!is.na(TOTAL_COUNT)]
 ```
@@ -28,7 +29,7 @@ plot(ts(original$TOTAL_COUNT[1:140]), main = NULL,
      xlab = NULL)
 ```
 
-## Data Set
+# Data Set
 Our dataset was produced by an AI using digital particle image velocimetry or 
 DPIV [Willert and Gharib, 1991] to count the level of bee activity outside 
 a hive marked R_4_5. These csv files are part of the output of
@@ -38,8 +39,19 @@ The counts correspond to a 28 second period recorded approximately every
 15 minutes throughout the day. The monitors shut-down at night and went off line
 several times throughout the season leaving significant coverage gaps.
 
+## bee.data
+<details>
+  <summary>Long Description of bee.data</summary>
+```{r, echo=FALSE}
+help(bee.data)
+```
+</details> 
+
+---
+
 The R_4_5 monitor worked reasonable well during the 2017 season. However, the 
 data collected from is was heavily right skewed and missing multiple values.
+
 ```{r, fig.align='center', fig.width=7, echo=FALSE}
 par(mfrow = c(1, 2))
 hist(data[!is.na(TOTAL_COUNT), TOTAL_COUNT], breaks = seq(0, 13500, 500),
@@ -49,7 +61,9 @@ plot(ts(data$TOTAL_COUNT[1:200]), main = "Data Accounting for Missing Times",
      xlab = 'Time (15 Min. Intervals)')
 ```
 
-## Time series
+---
+
+# Time series
 Time series data sets are most often indexed by time and store a single value for
 each index. A distinctive feature of time series is that the mean and variance
 may often be misleading as there is a significant auto correlation between a 
@@ -57,26 +71,55 @@ point and the preceding or following points. This makes linear models
 unsatisfactory and instead the data scientist must use the more poorly 
 understood techniques of time series analysis.
 
+---
 
-## Purpose
+# Purpose
 The purpose of the collected data set and associated tools is to provide a 
 frame-work for the data scientist to better understand the processing involved
 in preparing a dataset for time series analysis and interpreting the results.
 
-# Functions
+---
 
+# Functions
 
 ## base_impute
 
-```{r, echo = F}
-
-```  
-
+<details>
+  <summary>Long Description of base_impute</summary>
+```{r, echo=FALSE}
+help(base_impute)
+```
+</details>
 
 ## sparse_ar
 
+<details>
+  <summary>Long Description of spare_ar</summary>
+```{r, echo=FALSE}
+help(sparse_ar)
+```
+</details>
+
 ## sparse_arma
 
+<details>
+  <summary>Long Description of sparse_arma</summary>
+```{r, echo=FALSE}
+help(sparse_arma)
+```
+</details>
+
 ## sparse_ma
+
+<details>
+  <summary>Long Description of sparse_ma</summary>
+```{r, echo=FALSE}
+help(sparse_ma)
+```
+</details>
+
+---
+
+# Tutorial
 
 
